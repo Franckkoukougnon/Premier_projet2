@@ -4,11 +4,16 @@ package com.simplon.Premier_projet2.controller;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.swing.*;
+import java.awt.*;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -53,19 +58,26 @@ public class Exo2_console {
         return maListe;
     }
 
-    @RequestMapping(path = "/exo8")
+    @RequestMapping(path="/exo8")
     @ResponseBody
-    public  String monText(@RequestParam String unMot){
-        System.out.println(" exo 8");
-        return "mon texte est : " + unMot;
+    public String afficherDate(Model model) {
+        model.addAttribute("now", new Date());
+
+        return "affichageDate";
     }
 
-    @RequestMapping(path = "/exo9")
+    @RequestMapping(path="/exo9")
     @ResponseBody
-    public  String paragraph(@RequestParam String para){
+    public String afficherLaDate() {
+        Date myDate = new Date();
+        String myString = DateFormat.getDateInstance().format(myDate);
 
-        String reverse = StringUtils.reverse(para);
-        System.out.println(" exo 8");
-        return "mon texte est : " + para;
+        return myString;
+
     }
+
+
+
+
+
 }
